@@ -12,7 +12,6 @@ def set_creator(filename):
     return db_set
 
     
-
 # Данная функция проверяет наличие пересекающихся элементов в двух сетах. При существовании положительного срабатывания
 # в текущем диалоге возвращает пустую строку, таким образом для каждого диалога возможно только однократное появление единицы 
 # в соответствующем статусе
@@ -24,6 +23,8 @@ def check_line(overall_set, unique_words, status):
         return 1
     else:
         return ''
+    
+    
 # Данная функция позволяет доставать из текста названия компании и имя менеджера, они точно также, имя и название в статусе диалога
 # появляется только один раз - когда умпоминается впервые    
 def get_name(overall_set, unique_words, status):
@@ -35,12 +36,14 @@ def get_name(overall_set, unique_words, status):
     else:
         return ''    
     
+    
 # Функция для составления сета, так как в ключевых словах и выражениях содержатся выражения длиной до двух слов
 # данная функция рабивает строку на списки из одного и двух слов      
 def set_constructor(list_of_words):
     for  i in range(len(list_of_words)-1):
         list_of_words.append(list_of_words[i] + ' ' + list_of_words[i+1])
     return list_of_words  
+
 
 # Функция для обработки диалога. Данная функция также записывает результаты в новый csv файл - добавляются 
 # пять новых столбцов, куда записываются результаты парсинга     
@@ -81,7 +84,8 @@ def dialogue_processing(name_for_processed_database, dialogue, names, companies,
             writer = csv.writer(new_file)
             writer.writerow([line[0], line[1], line[2], line[3], '', '', '', '', ''])
             new_file.close()
-            
+ 
+
 #Данная функция отвечает за обработку файла. Она считывает файл с помощью генератора, чтобы была возможность обработки
 #файлов большого объема           
 def data_processing( processing_function, dictionaries, initial_database, name_for_processed_database):
@@ -118,7 +122,6 @@ names = set_creator('rus_names.csv')# словарь имен менеджеро
 companies = set_creator('companies.csv')# словарь названий компаний
 greetings = set_creator('greetings.csv')# словарь приветствий
 farewells = set_creator('farewells.csv')# словарь прощаний
-
 
 
 data_processing(dialogue_processing, [names, companies, greetings, farewells],  'test_data.csv', 'processed_data')            
