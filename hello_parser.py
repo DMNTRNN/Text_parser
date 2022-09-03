@@ -114,10 +114,10 @@ def data_processing( processing_function, dictionaries, initial_database, name_f
     dialogue_processing(name_for_processed_database, dialogue, names, companies, greetings, farewells)
     
 
-names = set_creator('rus_names.csv')
-companies = set_creator('companies.csv')
-greetings = set_creator('greetings.csv')
-farewells = set_creator('farewells.csv')
+names = set_creator('rus_names.csv')# словарь имен менеджеров
+companies = set_creator('companies.csv')# словарь названий компаний
+greetings = set_creator('greetings.csv')# словарь приветствий
+farewells = set_creator('farewells.csv')# словарь прощаний
 
 
 
